@@ -1428,35 +1428,24 @@ elif st.session_state.page == 6:
     st.markdown(
         """
         <div class="info-card">
-        <strong>📋 Dataset:</strong> Reference values from Model II test and validation tables.
-        Use the search bar to quickly find a species.
+        <strong>📋 Reference Data:</strong> Browse existing species outcomes and quickly filter results.
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    search_text = st.text_input(
-        "🔎 Search species",
-        placeholder="Type species name, Model II value, or NRA value",
-    ).strip().lower()
-
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns([2, 1])
     with col1:
-        dataset_options = ["All"] + sorted({row["Dataset"] for row in EXISTING_DETAILS_DATA})
-        dataset_filter = st.selectbox("Dataset", dataset_options)
+        search_text = st.text_input(
+            "🔎 Search",
+            placeholder="Search by species name, Model II, or NRA",
+        ).strip().lower()
     with col2:
-        category_options = ["All"] + sorted({row["Category"] for row in EXISTING_DETAILS_DATA})
-        category_filter = st.selectbox("Category", category_options)
-    with col3:
         risk_options = ["All"] + LABELS
         risk_filter = st.selectbox("Model II Risk", risk_options)
 
     filtered_rows = []
     for row in EXISTING_DETAILS_DATA:
-        if dataset_filter != "All" and row["Dataset"] != dataset_filter:
-            continue
-        if category_filter != "All" and row["Category"] != category_filter:
-            continue
         if risk_filter != "All" and row["Model II"] != risk_filter:
             continue
 
@@ -1465,12 +1454,16 @@ elif st.session_state.page == 6:
                 row["Invasive species"].lower(),
                 row["Model II"].lower(),
                 row["NRA"].lower(),
-                row["Dataset"].lower(),
-                row["Category"].lower(),
             ]
             if not any(search_text in value for value in searchable_values):
                 continue
-        filtered_rows.append(row)
+        filtered_rows.append(
+            {
+                "Invasive species": row["Invasive species"],
+                "Model II": row["Model II"],
+                "NRA": row["NRA"],
+            }
+        )
 
     st.caption(f"Showing {len(filtered_rows)} of {len(EXISTING_DETAILS_DATA)} records")
     st.dataframe(filtered_rows, use_container_width=True, hide_index=True)

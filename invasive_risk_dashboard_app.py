@@ -22,6 +22,46 @@ FACTOR_WEIGHTS = {
     "MIS": "High"
 }
 
+EXISTING_DETAILS_DATA = [
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Alternanthera philoxeroides", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Clidemia hirta", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Miconia calvescens", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Alstonia macrophylla", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Annona glabra", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Clusia rosea", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Dillenia suffructicosa", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Ageratina riparia", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Mimosa invisa", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Myroxylon balsamum", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Tithonia diversiflora", "Model II": "Low", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Mikania micrantha", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Prosopis juliflora", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Ulex europaeus", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Mimosa pigra", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Chromolaena odorata", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Parthenium hysterophorus", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Lantana camara", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Imperata cylindrica", "Model II": "High", "NRA": "Very High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Opuntia stricta", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Colubrina asiatica", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Pennisetum polystachion", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Sphagneticola trilobata", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Zizphus mauritiana", "Model II": "Low", "NRA": "Low"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Eichhornia crassipes", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Pistia stratiotes", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 6 - Test", "Category": "-", "Invasive species": "Leucaena leucocephala", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 7 - Validation", "Category": "Invasive", "Invasive species": "Austroeupatorium inulifolium", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 7 - Validation", "Category": "Invasive", "Invasive species": "Panicum maximum", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 7 - Validation", "Category": "Invasive", "Invasive species": "Cuscuta campestris", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 7 - Validation", "Category": "Invasive", "Invasive species": "Pueraria montana", "Model II": "High", "NRA": "High"},
+    {"Dataset": "Table 7 - Validation", "Category": "Invasive", "Invasive species": "Acacia mearnsii", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 7 - Validation", "Category": "Invasive", "Invasive species": "Myrica faya", "Model II": "Medium", "NRA": "Medium"},
+    {"Dataset": "Table 7 - Validation", "Category": "Non invasive", "Invasive species": "Cassia fistula", "Model II": "Low", "NRA": "Medium"},
+    {"Dataset": "Table 7 - Validation", "Category": "Non invasive", "Invasive species": "Cissus rotundifolia", "Model II": "Low", "NRA": "Low"},
+    {"Dataset": "Table 7 - Validation", "Category": "Non invasive", "Invasive species": "Hedychium gardnerianum", "Model II": "Low", "NRA": "Low"},
+    {"Dataset": "Table 7 - Validation", "Category": "Non invasive", "Invasive species": "Mangifera indica", "Model II": "Low", "NRA": "Medium"},
+]
+
 # -----------------------------------
 # Utility functions for fuzzy mathematics
 # -----------------------------------
@@ -978,10 +1018,13 @@ if st.session_state.page == 1:
     st.markdown("---")
     st.markdown("## Ready to Begin?")
     
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3, col4 = st.columns([1, 1.4, 1.4, 1])
     with col2:
         if st.button("🚀 Start Assessment", use_container_width=True):
             goto(2)
+    with col3:
+        if st.button("📚 Existing Details", use_container_width=True):
+            goto(6)
 
 
 
@@ -1378,6 +1421,73 @@ elif st.session_state.page == 4:
             goto(1)
 
 # -------------------------------------------------
+# PAGE 6 - EXISTING DATA
+# -------------------------------------------------
+elif st.session_state.page == 6:
+    st.markdown("# 📚 Existing Data")
+    st.markdown(
+        """
+        <div class="info-card">
+        <strong>📋 Dataset:</strong> Reference values from Model II test and validation tables.
+        Use the search bar to quickly find a species.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    search_text = st.text_input(
+        "🔎 Search species",
+        placeholder="Type species name, Model II value, or NRA value",
+    ).strip().lower()
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        dataset_options = ["All"] + sorted({row["Dataset"] for row in EXISTING_DETAILS_DATA})
+        dataset_filter = st.selectbox("Dataset", dataset_options)
+    with col2:
+        category_options = ["All"] + sorted({row["Category"] for row in EXISTING_DETAILS_DATA})
+        category_filter = st.selectbox("Category", category_options)
+    with col3:
+        risk_options = ["All"] + LABELS
+        risk_filter = st.selectbox("Model II Risk", risk_options)
+
+    filtered_rows = []
+    for row in EXISTING_DETAILS_DATA:
+        if dataset_filter != "All" and row["Dataset"] != dataset_filter:
+            continue
+        if category_filter != "All" and row["Category"] != category_filter:
+            continue
+        if risk_filter != "All" and row["Model II"] != risk_filter:
+            continue
+
+        if search_text:
+            searchable_values = [
+                row["Invasive species"].lower(),
+                row["Model II"].lower(),
+                row["NRA"].lower(),
+                row["Dataset"].lower(),
+                row["Category"].lower(),
+            ]
+            if not any(search_text in value for value in searchable_values):
+                continue
+        filtered_rows.append(row)
+
+    st.caption(f"Showing {len(filtered_rows)} of {len(EXISTING_DETAILS_DATA)} records")
+    st.dataframe(filtered_rows, use_container_width=True, hide_index=True)
+
+    if not filtered_rows:
+        st.warning("No matching records found. Try a broader search or reset the filters.")
+
+    st.markdown("---")
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if st.button("⬅️ Back to Home", use_container_width=True):
+            goto(1)
+    with col2:
+        if st.button("🚀 Go to Assessment", use_container_width=True):
+            goto(2)
+
+# -------------------------------------------------
 # PAGE 5 — CONTACT US
 # -------------------------------------------------
 elif st.session_state.page == 5:
@@ -1560,7 +1670,7 @@ with st.sidebar:
     
     st.divider()
     
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
         if st.button("🏠", help="Home", use_container_width=True):
@@ -1581,6 +1691,10 @@ with st.sidebar:
     with col4:
         if st.button("💬", help="Contact Us", use_container_width=True):
             goto(5)
+
+    with col5:
+        if st.button("📚", help="Existing Data", use_container_width=True):
+            goto(6)
     
     st.divider()
     

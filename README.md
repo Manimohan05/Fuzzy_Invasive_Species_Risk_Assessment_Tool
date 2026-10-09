@@ -4,7 +4,7 @@ A comprehensive web-based assessment tool for evaluating the invasiveness potent
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Manimohan05/Fuzzy_Invasive_Species_Risk_Assessment_Tool)
 [![ResearchGate](https://img.shields.io/badge/ResearchGate-Paper-green)](https://www.researchgate.net/publication/317406162_Novel_Fuzzy_Linguistic_based_Mathematical_model_to_assess_risk_of_Invasive_alien_plant_species)
-[![Streamlit App](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit)](https://localhost:8501)
+[![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-FF4B4B?logo=streamlit)](https://streamlit.io)
 
 ## 📋 Overview
 
@@ -198,7 +198,7 @@ Use the Contact Us page (💬 button) to:
 |---|---|
 | [GitHub Repository](https://github.com/Manimohan05/Fuzzy_Invasive_Species_Risk_Assessment_Tool.git) | Source code, issues, discussions |
 | [ResearchGate Paper](https://www.researchgate.net/publication/317406162_Novel_Fuzzy_Linguistic_based_Mathematical_model_to_assess_risk_of_Invasive_alien_plant_species) | Full research publication |
-| [Local Application](http://localhost:8501) | Running dashboard |
+| `http://localhost:8501` | Dashboard when run locally (`streamlit run invasive_risk_dashboard_app.py`) |
 
 ## 📚 Citation
 
